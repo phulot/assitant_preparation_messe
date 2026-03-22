@@ -269,7 +269,7 @@
 - `POST /api/preferences` — add exclusion or coup de coeur
 - `DELETE /api/preferences/:id` — remove preference
 
-## API for Search
+## [DONE] API for Search
 
 - `POST /api/search` — semantic + keyword search
 - Params: query, filters (tempsLiturgique[], moments[], themes[]), mode (semantic/tags/hybrid)
