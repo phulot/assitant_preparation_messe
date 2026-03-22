@@ -16,7 +16,7 @@
 - `Dockerfile` for the Next.js app (multi-stage build)
 - Verify all services start cleanly with `docker compose up`
 
-## Configure PostgreSQL with pgvector extension
+## [DONE] Configure PostgreSQL with pgvector extension
 - PostgreSQL Docker image with pgvector enabled (`pgvector/pgvector:pg16`)
 - Verify pgvector extension loads: `CREATE EXTENSION IF NOT EXISTS vector;`
 - Health check in Docker Compose
