@@ -34,7 +34,7 @@
 - Install MinIO JS SDK (`minio` or `@aws-sdk/client-s3`)
 - Create `lib/storage.ts` helper for upload/download/presigned URLs
 
-## Set up Ollama for local LLM and embeddings
+## [DONE] Set up Ollama for local LLM and embeddings
 - Ollama service in Docker Compose with model volume
 - Script to pull default models on first run (e.g., `mistral`, `nomic-embed-text`)
 - Create `lib/ai/provider.ts` abstraction layer (LLM provider interface)
