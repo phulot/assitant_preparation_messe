@@ -209,7 +209,7 @@
 - `DELETE /api/chants/:id` — soft delete
 - Visibility rules: creator sees own drafts, admin validates for global visibility
 
-## CRUD API for VersionParoles
+## [DONE] CRUD API for VersionParoles
 
 - `GET /api/chants/:id/paroles` — list versions
 - `POST /api/chants/:id/paroles` — add version
