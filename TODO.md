@@ -87,7 +87,7 @@
 - `RoleParoisse`: userId, paroisseId, role (enum: ADMIN, ANIMATEUR, CHORISTE, ORGANISTE, PRETRE)
 - Unique constraint on (userId, paroisseId, role)
 
-## Define Chant and related content models
+## [DONE] Define Chant and related content models
 
 - `Chant`: id, titre, auteur, compositeur, cote, annee, statut (enum: BROUILLON, VISIBLE_CREATEUR, VALIDE_GLOBAL), createurId, indicateurCompletude, embedding (vector), createdAt, updatedAt
 - `VersionParoles`: id, chantId, label, langue, estVersionPrincipale, auteurModificationId, sections (JSON array of {type, numero, texte, voix, indications}), schemaExecution
