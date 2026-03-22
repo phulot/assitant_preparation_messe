@@ -180,7 +180,7 @@
 - Streaming response support
 - API route: `POST /api/chat`
 
-## Implement AI auto-characterization service
+## [DONE] Implement AI auto-characterization service
 
 - Create `lib/ai/characterize.ts`
 - Input: song title + lyrics
