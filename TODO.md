@@ -162,7 +162,7 @@
 - Return 3-5 suggestions per celebration moment
 - Unit tests for scoring logic and filters
 
-## Implement file upload/download service (MinIO)
+## [DONE] Implement file upload/download service (MinIO)
 
 - Create `lib/services/storage.ts`
 - Upload partition (PDF/image) -> MinIO -> return URL
@@ -171,7 +171,7 @@
 - API routes: `POST /api/upload/partition`, `POST /api/upload/audio`
 - File size and type validation
 
-## Implement AI chat service (LLM)
+## [DONE] Implement AI chat service (LLM)
 
 - Create `lib/ai/chat.ts`
 - Ollama chat completion with system prompt for liturgical assistant
