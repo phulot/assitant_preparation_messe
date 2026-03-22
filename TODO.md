@@ -75,7 +75,7 @@
 
 # Data Model (Prisma Schema)
 
-## Define User and authentication models
+## [DONE] Define User and authentication models
 
 - `User`: id, name, email, passwordHash, createdAt, updatedAt
 - `Account`, `Session`, `VerificationToken` (NextAuth required)
