@@ -28,7 +28,7 @@
 - Create initial `prisma/schema.prisma` with all models (see Data Model section below)
 - Generate Prisma client, run first migration
 
-## Configure MinIO for file storage
+## [DONE] Configure MinIO for file storage
 - MinIO service in Docker Compose with persistent volume
 - Create default buckets: `partitions`, `audio` (future)
 - Install MinIO JS SDK (`minio` or `@aws-sdk/client-s3`)
