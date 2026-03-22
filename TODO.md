@@ -49,7 +49,7 @@
 - Session management (JWT strategy)
 - Middleware for protected routes (`middleware.ts`)
 
-## Set up pre-commit hooks and CI quality gates
+## [DONE] Set up pre-commit hooks and CI quality gates
 - Install `husky` + `lint-staged`
 - Pre-commit hook: `eslint --fix`, `prettier --write`, `tsc --noEmit`
 - Pre-commit hook: `vitest run` (unit tests)
