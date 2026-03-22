@@ -224,7 +224,7 @@
 - `DELETE /api/partitions/:id` — delete partition + MinIO file
 - Same pattern for `Enregistrement` (audio links/files)
 
-## CRUD API for Celebrations
+## [DONE] CRUD API for Celebrations
 
 - `GET /api/celebrations` — list by parish, date range
 - `GET /api/celebrations/:id` — detail with feuille, lignes, suggestions
