@@ -81,7 +81,7 @@
 - `Account`, `Session`, `VerificationToken` (NextAuth required)
 - Seed script for a default admin user
 
-## Define Paroisse (parish) and role models
+## [DONE] Define Paroisse (parish) and role models
 
 - `Paroisse`: id, nom, lieu, adresse, horairesMessesHabituels (JSON)
 - `RoleParoisse`: userId, paroisseId, role (enum: ADMIN, ANIMATEUR, CHORISTE, ORGANISTE, PRETRE)
