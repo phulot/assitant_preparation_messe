@@ -121,7 +121,7 @@
 
 # Core Services (Backend)
 
-## Implement Romcal liturgical calendar service
+## [DONE] Implement Romcal liturgical calendar service
 
 - Install `romcal` npm package
 - Create `lib/services/liturgical-calendar.ts`
