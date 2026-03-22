@@ -1,0 +1,390 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ──────────────────────────────────────────────
+// Enums
+// ──────────────────────────────────────────────
+
+enum RoleType {
+  ADMIN
+  ANIMATEUR
+  CHORISTE
+  ORGANISTE
+  PRETRE
+}
+
+enum StatutChant {
+  BROUILLON
+  VISIBLE_CREATEUR
+  VALIDE_GLOBAL
+}
+
+enum TypePartition {
+  MELODIE
+  SATB
+  ACCOMPAGNEMENT
+}
+
+enum FormatPartition {
+  PDF
+  MUSICXML
+  MIDI
+}
+
+enum TypeVoix {
+  TOUTES
+  SOPRANO
+  ALTO
+  TENOR
+  BASSE
+}
+
+enum SourceTag {
+  IA
+  HUMAIN
+}
+
+enum StatutTag {
+  AUTO
+  VALIDE
+  EN_REVISION
+}
+
+enum StatutCorrection {
+  EN_ATTENTE
+  APPROUVE
+  REJETE
+}
+
+enum TypeCelebration {
+  DOMINICALE
+  FETE
+  OBLIGATION
+  MARIAGE
+  BAPTEME
+  FUNERAILLES
+}
+
+enum TempsLiturgique {
+  AVENT
+  NOEL
+  ORDINAIRE
+  CAREME
+  PAQUES
+  PENTECOTE
+}
+
+enum StatutCelebration {
+  EN_PREPARATION
+  SOUMISE
+  VALIDEE
+  PUBLIEE
+}
+
+enum StatutFeuille {
+  BROUILLON
+  PUBLIEE
+}
+
+enum MomentLiturgique {
+  ENTREE
+  OFFERTOIRE
+  COMMUNION
+  ENVOI
+  KYRIE
+  GLORIA
+  SANCTUS
+  AGNUS
+  PSAUME
+  MEDITATION
+}
+
+enum TypePreference {
+  EXCLUSION
+  COUP_DE_COEUR
+}
+
+// ──────────────────────────────────────────────
+// User & Auth
+// ──────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  name         String?
+  email        String   @unique
+  passwordHash String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  accounts             Account[]
+  sessions             Session[]
+  roles                RoleParoisse[]
+  chantsCreated        Chant[]              @relation("ChantCreateur")
+  versionParoles       VersionParoles[]
+  demandesAuteur       DemandeCorrection[]  @relation("DemandeAuteur")
+  demandesAdmin        DemandeCorrection[]  @relation("DemandeAdmin")
+  celebrationsAnimees  Celebration[]        @relation("CelebrationAnimateur")
+  celebrationsPretre   Celebration[]        @relation("CelebrationPretre")
+  notifications        Notification[]
+  preferences          PreferenceAnimateur[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ──────────────────────────────────────────────
+// Paroisse & Roles
+// ──────────────────────────────────────────────
+
+model Paroisse {
+  id                      String   @id @default(cuid())
+  nom                     String
+  lieu                    String?
+  adresse                 String?
+  horairesMessesHabituels Json?
+
+  roles         RoleParoisse[]
+  celebrations  Celebration[]
+  historiques   HistoriqueChant[]
+}
+
+model RoleParoisse {
+  id         String   @id @default(cuid())
+  userId     String
+  paroisseId String
+  role       RoleType
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paroisse Paroisse @relation(fields: [paroisseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, paroisseId, role])
+}
+
+// ──────────────────────────────────────────────
+// Chant & Content
+// ──────────────────────────────────────────────
+
+model Chant {
+  id                   String      @id @default(cuid())
+  titre                String
+  auteur               String?
+  compositeur          String?
+  cote                 String?
+  annee                Int?
+  statut               StatutChant @default(BROUILLON)
+  createurId           String
+  indicateurCompletude Float?
+  embedding            Unsupported("vector(1536)")?
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+
+  createur        User               @relation("ChantCreateur", fields: [createurId], references: [id])
+  versionsParoles VersionParoles[]
+  partitions      Partition[]
+  enregistrements Enregistrement[]
+  tags            Tag[]
+  demandes        DemandeCorrection[]
+  lignesFeuille   LigneFeuille[]
+  historiques     HistoriqueChant[]
+  preferences     PreferenceAnimateur[]
+}
+
+model VersionParoles {
+  id                   String  @id @default(cuid())
+  chantId              String
+  label                String?
+  langue               String  @default("fr")
+  estVersionPrincipale Boolean @default(false)
+  auteurModificationId String?
+  sections             Json
+  schemaExecution      String?
+
+  chant            Chant         @relation(fields: [chantId], references: [id], onDelete: Cascade)
+  auteurModification User?       @relation(fields: [auteurModificationId], references: [id])
+  lignesFeuille    LigneFeuille[]
+}
+
+model Partition {
+  id         String         @id @default(cuid())
+  chantId    String
+  fichierUrl String
+  type       TypePartition
+  tonalite   String?
+  format     FormatPartition?
+
+  chant Chant @relation(fields: [chantId], references: [id], onDelete: Cascade)
+}
+
+model Enregistrement {
+  id         String   @id @default(cuid())
+  chantId    String
+  fichierUrl String
+  duree      Int?
+  format     String?
+  typeVoix   TypeVoix @default(TOUTES)
+
+  chant Chant @relation(fields: [chantId], references: [id], onDelete: Cascade)
+}
+
+// ──────────────────────────────────────────────
+// Tags & Corrections
+// ──────────────────────────────────────────────
+
+model Tag {
+  id                  String    @id @default(cuid())
+  chantId             String
+  tempsLiturgiques    String[]
+  themes              String[]
+  momentsCelebration  String[]
+  source              SourceTag @default(IA)
+  statut              StatutTag @default(AUTO)
+
+  chant    Chant               @relation(fields: [chantId], references: [id], onDelete: Cascade)
+  demandes DemandeCorrection[]
+}
+
+model DemandeCorrection {
+  id              String          @id @default(cuid())
+  chantId         String
+  tagId           String?
+  auteurId        String
+  commentaire     String?
+  ancienneValeur  String?
+  nouvelleValeur  String?
+  statut          StatutCorrection @default(EN_ATTENTE)
+  adminId         String?
+  dateTraitement  DateTime?
+
+  chant  Chant  @relation(fields: [chantId], references: [id], onDelete: Cascade)
+  tag    Tag?   @relation(fields: [tagId], references: [id])
+  auteur User   @relation("DemandeAuteur", fields: [auteurId], references: [id])
+  admin  User?  @relation("DemandeAdmin", fields: [adminId], references: [id])
+}
+
+// ──────────────────────────────────────────────
+// Celebration & Sheets
+// ──────────────────────────────────────────────
+
+model Celebration {
+  id               String            @id @default(cuid())
+  paroisseId       String
+  date             DateTime
+  type             TypeCelebration
+  tempsLiturgique  TempsLiturgique?
+  feteEventuelle   String?
+  lectures         Json?
+  animateurId      String?
+  pretreId         String?
+  statut           StatutCelebration @default(EN_PREPARATION)
+
+  paroisse      Paroisse         @relation(fields: [paroisseId], references: [id], onDelete: Cascade)
+  animateur     User?            @relation("CelebrationAnimateur", fields: [animateurId], references: [id])
+  pretre        User?            @relation("CelebrationPretre", fields: [pretreId], references: [id])
+  feuilles      FeuilleDeChants[]
+  historiques   HistoriqueChant[]
+  notifications Notification[]
+}
+
+model FeuilleDeChants {
+  id            String       @id @default(cuid())
+  celebrationId String
+  statut        StatutFeuille @default(BROUILLON)
+  pdfUrl        String?
+
+  celebration Celebration    @relation(fields: [celebrationId], references: [id], onDelete: Cascade)
+  lignes      LigneFeuille[]
+}
+
+model LigneFeuille {
+  id               String           @id @default(cuid())
+  feuilleId        String
+  chantId          String
+  versionParolesId String?
+  moment           MomentLiturgique
+  ordre            Int
+  notes            String?
+
+  feuille        FeuilleDeChants @relation(fields: [feuilleId], references: [id], onDelete: Cascade)
+  chant          Chant           @relation(fields: [chantId], references: [id])
+  versionParoles VersionParoles? @relation(fields: [versionParolesId], references: [id])
+}
+
+// ──────────────────────────────────────────────
+// Other
+// ──────────────────────────────────────────────
+
+model Notification {
+  id             String   @id @default(cuid())
+  utilisateurId  String
+  type           String
+  contenu        String
+  celebrationId  String?
+  lue            Boolean  @default(false)
+  date           DateTime @default(now())
+
+  utilisateur User         @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  celebration Celebration? @relation(fields: [celebrationId], references: [id])
+}
+
+model HistoriqueChant {
+  id               String   @id @default(cuid())
+  chantId          String
+  paroisseId       String
+  celebrationId    String?
+  dateUtilisation  DateTime
+
+  chant       Chant        @relation(fields: [chantId], references: [id], onDelete: Cascade)
+  paroisse    Paroisse     @relation(fields: [paroisseId], references: [id], onDelete: Cascade)
+  celebration Celebration? @relation(fields: [celebrationId], references: [id])
+}
+
+model PreferenceAnimateur {
+  id      String         @id @default(cuid())
+  userId  String
+  chantId String
+  type    TypePreference
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chant Chant @relation(fields: [chantId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chantId])
+}

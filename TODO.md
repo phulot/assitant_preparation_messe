@@ -21,7 +21,7 @@
 - Verify pgvector extension loads: `CREATE EXTENSION IF NOT EXISTS vector;`
 - Health check in Docker Compose
 
-## Set up Prisma ORM with initial schema
+## [DONE] Set up Prisma ORM with initial schema
 - Install Prisma, initialize with PostgreSQL provider
 - Configure `DATABASE_URL` in `.env`
 - Add pgvector support via `prisma-extension-pgvector` or raw SQL for vector columns
