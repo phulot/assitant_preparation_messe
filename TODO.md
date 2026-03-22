@@ -274,7 +274,7 @@
 - `POST /api/search` — semantic + keyword search
 - Params: query, filters (tempsLiturgique[], moments[], themes[]), mode (semantic/tags/hybrid)
 
-## API for Notifications
+## [DONE] API for Notifications
 
 - `GET /api/notifications` — list user notifications (paginated)
 - `PATCH /api/notifications/:id` — mark as read
