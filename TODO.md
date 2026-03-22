@@ -189,7 +189,7 @@
 - Called automatically on song creation
 - Tags stored with source=IA, statut=AUTO
 
-## Implement notification service
+## [DONE] Implement notification service
 
 - Create `lib/services/notifications.ts`
 - Create notifications in DB for events: feuille prête, modification, chants à préparer
