@@ -263,7 +263,7 @@
 - `GET /api/admin/corrections` — list pending corrections (admin only)
 - `PATCH /api/admin/corrections/:id` — approve/reject correction
 
-## API for User preferences
+## [DONE] API for User preferences
 
 - `GET /api/preferences` — get user's exclusions and favorites
 - `POST /api/preferences` — add exclusion or coup de coeur
