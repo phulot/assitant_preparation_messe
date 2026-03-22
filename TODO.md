@@ -256,7 +256,7 @@
 - `PATCH /api/paroisses/:id/membres/:userId` — change role
 - `DELETE /api/paroisses/:id/membres/:userId` — remove member
 
-## API for Tags and DemandeCorrection
+## [DONE] API for Tags and DemandeCorrection
 
 - `GET /api/chants/:id/tags` — get tags
 - `POST /api/chants/:id/corrections` — submit correction request
