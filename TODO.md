@@ -217,7 +217,7 @@
 - `DELETE /api/paroles/:id` — delete version
 - Set principal version
 
-## CRUD API for Partitions and Enregistrements
+## [DONE] CRUD API for Partitions and Enregistrements
 
 - `POST /api/chants/:id/partitions` — upload partition to MinIO, create DB record
 - `GET /api/chants/:id/partitions` — list partitions
