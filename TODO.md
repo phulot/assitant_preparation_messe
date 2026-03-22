@@ -291,7 +291,7 @@
 - Sidebar links: Dashboard, Celebrations, Chants, Recherche, Chat IA, Admin (if role)
 - Auth guard: redirect to login if unauthenticated
 
-## Create login and registration pages
+## [DONE] Create login and registration pages
 
 - `/login` — email + password form, NextAuth signIn
 - `/register` — name, email, password, confirm password
