@@ -232,7 +232,7 @@
 - `PATCH /api/celebrations/:id` — update status, assign animateur/pretre
 - Auto-fetch readings and liturgical season on creation
 
-## API for FeuilleDeChants and LigneFeuille
+## [DONE] API for FeuilleDeChants and LigneFeuille
 
 - `GET /api/celebrations/:id/feuille` — get sheet with lines
 - `POST /api/celebrations/:id/feuille` — create sheet
@@ -241,7 +241,7 @@
 - `DELETE /api/lignes/:id` — remove line
 - `POST /api/feuilles/:id/pdf` — generate PDF
 
-## API for Suggestions
+## [DONE] API for Suggestions
 
 - `GET /api/celebrations/:id/suggestions` — get AI suggestions per moment
 - Query params: includeHistory (bool), moment filter
