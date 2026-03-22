@@ -41,7 +41,7 @@
 - Create `lib/ai/embeddings.ts` for embedding generation
 - Verify embeddings generation works end-to-end
 
-## Configure NextAuth.js authentication
+## [DONE] Configure NextAuth.js authentication
 - Install `next-auth` v5 (Auth.js)
 - Set up credentials provider (email/password)
 - Create auth configuration in `app/api/auth/[...nextauth]/route.ts`
