@@ -144,7 +144,7 @@
 - Batch embedding generation for seed/import
 - Function: `generateEmbedding(text: string): Promise<number[]>`
 
-## Implement semantic search service
+## [DONE] Implement semantic search service
 
 - Create `lib/services/search.ts`
 - Vector similarity search using pgvector (`<=>` cosine distance)
