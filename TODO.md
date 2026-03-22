@@ -111,7 +111,7 @@
 - `HistoriqueChant`: id, chantId, paroisseId, celebrationId, dateUtilisation
 - `PreferenceAnimateur`: utilisateurId, chantId, type (enum: EXCLUSION, COUP_DE_COEUR)
 
-## Run and validate full Prisma migration
+## [DONE] Run and validate full Prisma migration
 
 - `npx prisma migrate dev` with all models
 - Verify all relations and constraints
