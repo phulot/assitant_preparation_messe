@@ -10,7 +10,7 @@
 - Install and configure shadcn/ui
 - Set up project directory structure: `app/`, `lib/`, `components/`, `services/`, `prisma/`
 
-## Set up Docker Compose for local development
+## [DONE] Set up Docker Compose for local development
 - `docker-compose.yml` with services: `app` (Next.js), `db` (PostgreSQL + pgvector), `minio`, `ollama`, `redis` (optional)
 - `.env.example` with all required environment variables
 - `Dockerfile` for the Next.js app (multi-stage build)
