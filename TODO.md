@@ -105,7 +105,7 @@
 - `FeuilleDeChants`: id, celebrationId, statut (enum: BROUILLON, PUBLIEE), pdfUrl
 - `LigneFeuille`: id, feuilleId, chantId, versionParolesId, moment (enum), ordre, notes
 
-## Define Notification, HistoriqueChant, and PreferenceAnimateur models
+## [DONE] Define Notification, HistoriqueChant, and PreferenceAnimateur models
 
 - `Notification`: id, utilisateurId, type, contenu, celebrationId (nullable), lue, date
 - `HistoriqueChant`: id, chantId, paroisseId, celebrationId, dateUtilisation
