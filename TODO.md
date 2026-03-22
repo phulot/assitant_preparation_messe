@@ -136,7 +136,7 @@
 - Cache readings (Redis or in-memory) to avoid repeated calls
 - Unit tests with mocked API responses
 
-## Implement embedding generation service
+## [DONE] Implement embedding generation service
 
 - Create `lib/ai/embeddings.ts`
 - Generate embeddings for song lyrics via Ollama (`nomic-embed-text` or similar)
