@@ -246,7 +246,7 @@
 - `GET /api/celebrations/:id/suggestions` — get AI suggestions per moment
 - Query params: includeHistory (bool), moment filter
 
-## API for Paroisses and Roles
+## [DONE] API for Paroisses and Roles
 
 - `GET /api/paroisses` — list user's parishes
 - `POST /api/paroisses` — create parish
