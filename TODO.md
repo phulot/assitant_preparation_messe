@@ -128,7 +128,7 @@
 - Functions: get liturgical season for a date, get feast/solemnity, list upcoming celebrations
 - Unit tests for key dates (Christmas, Easter, Ordinary Time boundaries)
 
-## Implement AELF readings API integration
+## [DONE] Implement AELF readings API integration
 
 - Create `lib/services/aelf.ts`
 - Fetch daily readings (1ere lecture, psaume, 2eme lecture, evangile) from AELF API
