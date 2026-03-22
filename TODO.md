@@ -99,7 +99,7 @@
 - `Tag`: id, chantId, tempsLiturgiques (string[]), themes (string[]), momentsCelebration (string[]), source (enum: IA, HUMAIN), statut (enum: AUTO, VALIDE, EN_REVISION)
 - `DemandeCorrection`: id, chantId, tagId, auteurId, commentaire, ancienneValeur, nouvelleValeur, statut (enum: EN_ATTENTE, APPROUVE, REJETE), adminId, dateTraitement
 
-## Define Celebration, FeuilleDeChants, and LigneFeuille models
+## [DONE] Define Celebration, FeuilleDeChants, and LigneFeuille models
 
 - `Celebration`: id, paroisseId, date, type (enum), tempsLiturgique, feteEventuelle, lectures (JSON), animateurId, pretreId, statut (enum: EN_PREPARATION, SOUMISE, VALIDEE, PUBLIEE)
 - `FeuilleDeChants`: id, celebrationId, statut (enum: BROUILLON, PUBLIEE), pdfUrl
