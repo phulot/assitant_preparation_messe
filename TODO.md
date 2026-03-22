@@ -200,7 +200,7 @@
 
 # API Routes
 
-## CRUD API for Chants
+## [DONE] CRUD API for Chants
 
 - `GET /api/chants` — list with pagination, filters (statut, tempsLiturgique, moment)
 - `GET /api/chants/:id` — detail with paroles, partitions, enregistrements, tags
