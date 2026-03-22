@@ -284,7 +284,7 @@
 
 # Frontend — Layout & Navigation
 
-## Create app layout with sidebar/header navigation
+## [DONE] Create app layout with sidebar/header navigation
 
 - Responsive layout: sidebar on desktop, bottom nav on mobile
 - Header: app logo, parish selector dropdown, user avatar/menu
