@@ -152,7 +152,7 @@
 - API route: `POST /api/search` with query, filters (tempsLiturgique, moment, theme)
 - Unit tests for ranking and filtering
 
-## Implement song suggestion engine
+## [DONE] Implement song suggestion engine
 
 - Create `lib/services/suggestions.ts`
 - Input: celebration date, parish ID
