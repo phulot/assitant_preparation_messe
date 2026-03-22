@@ -94,7 +94,7 @@
 - `Partition`: id, chantId, fichierUrl, type (enum: MELODIE, SATB, ACCOMPAGNEMENT), tonalite, format
 - `Enregistrement`: id, chantId, fichierUrl, duree, format, typeVoix (enum: TOUTES, SOPRANO, ALTO, TENOR, BASSE)
 
-## Define Tag/Characterization and correction models
+## [DONE] Define Tag/Characterization and correction models
 
 - `Tag`: id, chantId, tempsLiturgiques (string[]), themes (string[]), momentsCelebration (string[]), source (enum: IA, HUMAIN), statut (enum: AUTO, VALIDE, EN_REVISION)
 - `DemandeCorrection`: id, chantId, tagId, auteurId, commentaire, ancienneValeur, nouvelleValeur, statut (enum: EN_ATTENTE, APPROUVE, REJETE), adminId, dateTraitement
